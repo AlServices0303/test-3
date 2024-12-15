@@ -147,33 +147,6 @@
             padding: 20px; 
             background-color: #111; 
         }
-
-        /* New style for the new section */
-        .product-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background-image: url('images/adrian-regeci-gGz0zxpIBNI-unsplash.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding-right: 5%;
-        }
-        .product-section .text-overlay {
-            text-align: right;
-            color: white;
-            font-size: 2.5rem;
-            z-index: 2;
-        }
-        .product-section h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-        }
-        .product-section p {
-            font-size: 1.5rem;
-        }
     </style>
 </head>
 <body>
@@ -331,14 +304,6 @@
         </div>
     </section>
 
-    <!-- New product section with image and text -->
-    <section class="product-section">
-        <div class="text-overlay">
-            <h1>PRODUCT</h1>
-            <p>Gear Up for the Future, Wear the Power</p>
-        </div>
-    </section>
-
     <!-- Section texte et image -->
     <section class="content-section">
         <div class="text-content">
@@ -361,4 +326,71 @@
 
     <!-- Section image Go Further -->
     <section class="image-content">
-        <img class="animate-on-scroll" src="images/5e676132d684b9.75355458.png" alt="Go Further Image
+        <img class="animate-on-scroll" src="images/5e676132d684b9.75355458.png" alt="Go Further Image">
+        <div class="text-content">
+            <h1>GO FURTHER</h1>
+            <p>Infinite Skies is a cutting-edge immersive experience that blends VR, AR, and 4DX effects to simulate space exploration. From liftoff to interstellar missions, participants engage in interactive adventures that educate and inspire, making the dream of space travel accessible and unforgettable.</p>
+        </div>
+    </section>
+
+  
+  <!-- New product section with image and text -->
+    <section class="product-section">
+        <div class="text-overlay">
+            <h1>PRODUCT</h1>
+            <p>Gear Up for the Future, Wear the Power</p>
+        </div>
+    </section>
+    
+<section>
+  <h1>SHOP</h1>
+
+  <!-- Gallery of images -->
+  <div class="rocket-gallery">
+    <img src="images/unnamed-2-1.jpg" alt="Rocket Image 1">
+    <img src="images/bb.jpg" alt="Rocket Image 2">
+    <img src="images/LD0005309557.jpg" alt="Rocket Image 3">
+  </div>
+</section>
+
+
+
+
+  <section>
+
+  <footer id="contact" class="footer">
+    <h2>Contact Us</h2>
+    <p>Email: contact@infiniteskies.com</p>
+  </footer>
+
+
+  </section>
+
+
+
+    <!-- Script pour les animations au scroll -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.05 // Déclenche à 5% de visibilité
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animate");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            const imagesToAnimate = document.querySelectorAll(".animate-on-scroll");
+            imagesToAnimate.forEach(image => observer.observe(image));
+        });
+    </script>
+</body>
+</html>
