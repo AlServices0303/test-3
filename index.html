@@ -331,5 +331,68 @@
             imagesToAnimate.forEach(image => observer.observe(image));
         });
     </script>
+
+    <!-- Section Shop -->
+<section class="shop-section">
+    <h1>SHOP</h1>
+    <div class="shop-images">
+        <a href="shop/item1.html" target="_blank">
+            <img src="images/shop-item1.png" alt="Shop Item 1">
+        </a>
+        <a href="shop/item2.html" target="_blank">
+            <img src="images/shop-item2.png" alt="Shop Item 2">
+        </a>
+        <a href="shop/item3.html" target="_blank">
+            <img src="images/shop-item3.png" alt="Shop Item 3">
+        </a>
+    </div>
+</section>
+
+<style>
+    .shop-section {
+        padding: 100px 5%;
+        text-align: center;
+        background-color: #000;
+        color: #fff;
+    }
+
+    .shop-section h1 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+    }
+
+    .shop-images {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .shop-images a {
+        display: inline-block;
+        text-decoration: none;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .shop-images a:hover {
+        transform: scale(1.1);
+        opacity: 0.9;
+    }
+
+    .shop-images img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border: 2px solid #fff;
+        border-radius: 10px;
+        transition: border-color 0.3s ease;
+    }
+
+    .shop-images a:hover img {
+        border-color: #00adee;
+    }
+</style>
+
 </body>
 </html>
