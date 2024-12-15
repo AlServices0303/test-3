@@ -6,177 +6,115 @@
     <title>Infinite Skies</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            margin: 0; 
-            font-family: 'Roboto', sans-serif; 
-            color: white; 
-            background-color: black; 
-            overflow-x: hidden; 
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            background-color: black;
+            overflow-x: hidden;
         }
-        header { 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            background-color: black; 
-            z-index: 10; 
-            display: flex; 
-            justify-content: center; 
-            padding: 15px 0; 
-        }
-        header nav a { 
-            margin: 0 15px; 
-            text-decoration: none; 
-            color: white; 
-            font-size: 14px; 
-            text-transform: uppercase; 
-            font-weight: 700; 
-            transition: color 0.3s; 
-        }
-        header nav a:hover { color: #00adee; }
-        .video-section { 
-            position: relative; 
-            height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        .video-section video { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            z-index: 1;
-        }
-        .video-section .text-overlay { 
-            position: relative; 
-            text-align: center; 
-            z-index: 2; 
-            animation: fadeIn 2s ease-in-out; 
-            padding-left: 5%; 
-        }
-        .video-section .text-overlay h1 { font-size: 4rem; margin-bottom: 15px; }
-        .video-section .text-overlay p { 
-            font-size: 1.5rem; 
-            margin-top: 10px; 
-            animation: fadeIn 2s ease-in-out 1s forwards; 
-            opacity: 0; 
-        }
-        .content-section { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 100px 5%; 
-        }
-        .content-section .text-content { max-width: 50%; text-align: left; }
-        .content-section img { 
-            max-width: 40%; 
-            margin-right: 5%; 
-            opacity: 0; 
-            transform: translateX(100%); 
-            transition: opacity 1.5s ease, transform 1.5s ease; 
-        }
-        .content-section img.animate { opacity: 1; transform: translateX(0); }
-        .video-content { 
-            position: relative; 
-            padding: 100px 5%; 
-            text-align: center; 
-        }
-        .video-content video {left:0px; width: 100%; height: auto; margin-bottom: 30px; }
-        .video-content .text-overlay { 
-            position: absolute; 
-            top: 50%; 
-            left: 5%; 
-            transform: translateY(-50%); 
-            z-index: 2; 
-            color: white; 
-            text-align: left; 
-        }
-        .video-content h1 { font-size: 3rem; margin-bottom: 15px; }
-        .video-content p { font-size: 1.5rem; line-height: 1.5; }
-        .image-content { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 100px 5%; 
-        }
-        .image-content img { 
-            max-width: 40%; 
-            opacity: 0; 
-            transform: translateX(-100%); 
-            transition: opacity 1.5s ease, transform 1.5s ease; 
-        }
-        .image-content img.animate { opacity: 1; transform: translateX(0); }
-        .image-content .text-content { max-width: 50%; text-align: left; padding-left: 5%; }
-        .image-content h1, .video-content h1 { font-size: 2.5rem; margin-bottom: 15px; }
-        .image-content p, .video-content p { font-size: 1.2rem; line-height: 1.5; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        canvas {
+        header {
             position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: black;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+        header nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        header nav a:hover {
+            color: #00adee;
+        }
+        section {
+            position: relative;
+            padding: 100px 5%;
+        }
+        .video-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .video-section video {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-        }
-
-        .rocket-gallery {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .rocket-gallery img {
-            width: 30%;
-            height: auto;
             object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
+            z-index: 1;
         }
-
-        .rocket-gallery img:hover {
-            transform: scale(1.05);
+        .video-section .text-overlay {
+            position: relative;
+            text-align: center;
+            z-index: 2;
         }
-
-        /* New product section styles */
+        .video-section .text-overlay h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+        }
+        .video-section .text-overlay p {
+            font-size: 1.5rem;
+        }
+        .content-section, .image-content, .video-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .content-section img, .image-content img {
+            max-width: 40%;
+            height: auto;
+        }
+        .content-section .text-content, .image-content .text-content {
+            max-width: 50%;
+        }
+        .video-content video {
+            width: 100%;
+            height: auto;
+        }
         .product-section {
             position: relative;
             display: flex;
-            flex-direction: row-reverse;
             align-items: center;
-            justify-content: space-between;
-            margin: 100px 5%;
-        }
-
-        .product-section img {
-            width: 45%;
             height: auto;
+            margin: 100px 0;
+        }
+        .product-section img {
+            width: 100%;
+            max-height: 1080px;
             object-fit: cover;
-            border-radius: 8px;
         }
-
         .product-section .text-overlay {
-            color: white; /* Text color updated to white */
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
             text-align: right;
-            z-index: 2;
-            max-width: 45%;
-            padding-right: 20px;
+            color: white;
         }
-
         .product-section .text-overlay h1 {
-            font-size: 2.5rem; /* Same size as other titles */
+            font-size: 3rem;
             margin-bottom: 15px;
         }
-
         .product-section .text-overlay p {
             font-size: 1.5rem;
-            line-height: 1.5;
         }
-
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: black;
+        }
     </style>
 </head>
 <body>
@@ -193,10 +131,7 @@
         </nav>
     </header>
 
-    <canvas id="spaceBackground"></canvas>
-
-    <!-- Sections unchanged -->
-    <section class="video-section">
+    <section class="video-section" id="infinite-skies">
         <video autoplay loop muted>
             <source src="images/314844502744625152.mp4" type="video/mp4">
         </video>
@@ -206,8 +141,31 @@
         </div>
     </section>
 
-    <!-- Product Section -->
-    <section class="product-section">
+    <section class="content-section" id="falcon-heavy">
+        <div class="text-content">
+            <h1>Falcon Heavy</h1>
+            <p>The world's most powerful operational rocket.</p>
+        </div>
+        <img src="images/falcon-heavy.jpg" alt="Falcon Heavy">
+    </section>
+
+    <section class="content-section" id="dragon">
+        <img src="images/dragon.jpg" alt="Dragon">
+        <div class="text-content">
+            <h1>Dragon</h1>
+            <p>Transporting crew and cargo to the International Space Station.</p>
+        </div>
+    </section>
+
+    <section class="content-section" id="starship">
+        <div class="text-content">
+            <h1>Starship</h1>
+            <p>Our fully reusable spacecraft for missions to Mars and beyond.</p>
+        </div>
+        <img src="images/starship.jpg" alt="Starship">
+    </section>
+
+    <section class="product-section" id="product">
         <img src="images/adrian-regeci-gGz0zxpIBNI-unsplash.jpg" alt="Product Image">
         <div class="text-overlay">
             <h1>PRODUCT</h1>
@@ -215,7 +173,7 @@
         </div>
     </section>
 
-    <footer id="contact" class="footer">
+    <footer id="contact">
         <h2>Contact Us</h2>
         <p>Email: contact@infiniteskies.com</p>
     </footer>
