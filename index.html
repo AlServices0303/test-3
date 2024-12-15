@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -124,56 +124,60 @@
 
         .rocket-gallery {
             display: flex;
-            justify-content: center; /* Centre les images horizontalement */
-            gap: 20px; /* Espace entre les images */
-            padding: 20px; /* Optionnel : espace autour de la galerie */
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
         }
 
         .rocket-gallery img {
-            width: 30%; /* Chaque image prend 30% de la largeur du conteneur */
-            height: auto; /* Garde le ratio d'aspect des images */
-            object-fit: cover; /* Ajuste l'image pour bien remplir son conteneur sans distorsion */
-            border-radius: 8px; /* Optionnel : arrondit légèrement les coins des images */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optionnel : ajoute une ombre pour un effet visuel */
-            transition: transform 0.3s; /* Ajoute une animation au survol */
+            width: 30%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
         }
 
         .rocket-gallery img:hover {
-            transform: scale(1.05); /* Agrandit légèrement l'image au survol */
+            transform: scale(1.05);
         }
 
-        /* Product section specific styles */
+        /* New product section styles */
         .product-section {
             position: relative;
-            text-align: right;
-            margin-top: 50px;
-        }
-        .product-section img {
-            width: 100%; /* Set to full width */
-            height: 1080px; /* Fixed height for 1920x1080 aspect ratio */
-            object-fit: cover;
-        }
-        .product-section .text-overlay {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            color: white;
-            background-color: black;
-            padding: 15px;
-            z-index: 2;
-        }
-        .product-section h1 {
-            margin-bottom: 10px;
-        }
-        .product-section p {
-            margin-top: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 50px;
         }
 
-        footer { 
-            text-align: center; 
-            padding: 20px; 
-            background-color: #111; 
+        .product-section img {
+            object-fit: cover;
+            width: 1920px;
+            height: 1080px;
+            margin-right: 15px;
         }
+
+        .product-section .text-overlay {
+            position: absolute;
+            right: 15px;
+            color: black; /* Text color updated to black */
+            text-align: right;
+            z-index: 2;
+            margin-right: 15px;
+        }
+
+        .product-section .text-overlay h1 {
+            font-size: 2.5rem; /* Same size as other titles */
+            margin-bottom: 15px;
+        }
+
+        .product-section .text-overlay p {
+            font-size: 1.5rem;
+        }
+
     </style>
 </head>
 <body>
@@ -192,6 +196,7 @@
 
     <canvas id="spaceBackground"></canvas>
 
+    <!-- Sections unchanged -->
     <section class="video-section">
         <video autoplay loop muted>
             <source src="images/314844502744625152.mp4" type="video/mp4">
@@ -202,6 +207,33 @@
         </div>
     </section>
 
+    <section class="content-section">
+        <div class="text-content">
+            <h2>INFINITE SKIES</h2>
+            <p>Infinite Skies is an immersive space exploration game blending stunning visuals, VR/AR technology, and emotional storytelling. Players navigate galaxies, solve mysteries, and forge connections, reflecting on humanity's place in the cosmos.</p>
+        </div>
+        <img class="animate-on-scroll" src="images/IntotheInfiniteSkies.png" alt="Into the Infinite Skies">
+    </section>
+
+    <section class="video-content">
+        <video autoplay loop muted>
+            <source src="images/IntotheInfiniteSkies.mp4" type="video/mp4">
+        </video>
+        <div class="text-overlay">
+            <h1>GO FURTHER</h1>
+            <p>Where Your Journey to the Stars Begins.</p>
+        </div>
+    </section>
+
+    <section class="image-content">
+        <img class="animate-on-scroll" src="images/5e676132d684b9.75355458.png" alt="Go Further Image">
+        <div class="text-content">
+            <h1>GO FURTHER</h1>
+            <p>Infinite Skies is a cutting-edge immersive experience that blends VR, AR, and 4DX effects to simulate space exploration. From liftoff to interstellar missions, participants engage in interactive adventures that educate and inspire, making the dream of space travel accessible and unforgettable.</p>
+        </div>
+    </section>
+
+    <!-- Product Section -->
     <section class="product-section">
         <img src="images/adrian-regeci-gGz0zxpIBNI-unsplash.jpg" alt="Product Image">
         <div class="text-overlay">
@@ -224,5 +256,28 @@
         <p>Email: contact@infiniteskies.com</p>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.05
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animate");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            const imagesToAnimate = document.querySelectorAll(".animate-on-scroll");
+            imagesToAnimate.forEach(image => observer.observe(image));
+        });
+    </script>
 </body>
 </html>
