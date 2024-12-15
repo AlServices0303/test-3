@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -121,26 +121,53 @@
             height: 100%;
             z-index: -1;
         }
-.rocket-gallery {
-    display: flex;
-    justify-content: center; /* Centre les images horizontalement */
-    gap: 20px; /* Espace entre les images */
-    padding: 20px; /* Optionnel : espace autour de la galerie */
-}
 
-.rocket-gallery img {
-    width: 30%; /* Chaque image prend 30% de la largeur du conteneur */
-    height: auto; /* Garde le ratio d'aspect des images */
-    object-fit: cover; /* Ajuste l'image pour bien remplir son conteneur sans distorsion */
-    border-radius: 8px; /* Optionnel : arrondit légèrement les coins des images */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optionnel : ajoute une ombre pour un effet visuel */
-    transition: transform 0.3s; /* Ajoute une animation au survol */
-}
+        .rocket-gallery {
+            display: flex;
+            justify-content: center; /* Centre les images horizontalement */
+            gap: 20px; /* Espace entre les images */
+            padding: 20px; /* Optionnel : espace autour de la galerie */
+        }
 
-.rocket-gallery img:hover {
-    transform: scale(1.05); /* Agrandit légèrement l'image au survol */
-}
+        .rocket-gallery img {
+            width: 30%; /* Chaque image prend 30% de la largeur du conteneur */
+            height: auto; /* Garde le ratio d'aspect des images */
+            object-fit: cover; /* Ajuste l'image pour bien remplir son conteneur sans distorsion */
+            border-radius: 8px; /* Optionnel : arrondit légèrement les coins des images */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optionnel : ajoute une ombre pour un effet visuel */
+            transition: transform 0.3s; /* Ajoute une animation au survol */
+        }
 
+        .rocket-gallery img:hover {
+            transform: scale(1.05); /* Agrandit légèrement l'image au survol */
+        }
+
+        /* Product section specific styles */
+        .product-section {
+            position: relative;
+            text-align: right;
+            margin-top: 50px;
+        }
+        .product-section img {
+            width: 100%; /* Set to full width */
+            height: 1080px; /* Fixed height for 1920x1080 aspect ratio */
+            object-fit: cover;
+        }
+        .product-section .text-overlay {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            background-color: black;
+            padding: 15px;
+            z-index: 2;
+        }
+        .product-section h1 {
+            margin-bottom: 10px;
+        }
+        .product-section p {
+            margin-top: 0;
+        }
 
         footer { 
             text-align: center; 
@@ -165,135 +192,6 @@
 
     <canvas id="spaceBackground"></canvas>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
-<script>
-    // Three.js Space Background Script
-    let scene, camera, renderer, composer, stars = [];
-    let canvasVisible = false; // Variable to track visibility state of the canvas
-    let scrollY = 0;
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const canvas = document.getElementById('spaceBackground');
-        renderer = new THREE.WebGLRenderer({ canvas: canvas });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 400;
-
-        const starMaterial = new THREE.MeshStandardMaterial({
-            color: 0xffffff,
-            emissive: 0xffffff,
-            emissiveIntensity: 0.5
-        });
-
-        const light = new THREE.AmbientLight(0xffffff, 1);
-        scene.add(light);
-
-        for (let i = 0; i < 1800; i++) {
-            const starGeometry = new THREE.SphereGeometry(Math.random() * 1.5 + 0.5, 16, 16);
-            const star = new THREE.Mesh(starGeometry, starMaterial);
-            star.position.set(
-                (Math.random() - 0.5) * 2000,
-                (Math.random() - 0.5) * 2000,
-                (Math.random() - 0.5) * 2000
-            );
-            scene.add(star);
-            stars.push(star);
-        }
-
-        const colors = [0xbbad17, 0xb92a04, 0x6da9ab]; // light yellow, deep red, soft blue
-        for (let i = 0; i < 200; i++) {
-            const color = colors[Math.floor(Math.random() * colors.length)];
-            const opacity = Math.random() * 0.6 + 0.1; // Random opacity between 0.1 and 0.7
-            const colorfulStarMaterial = new THREE.MeshStandardMaterial({
-                color: color,
-                emissive: color,
-                emissiveIntensity: opacity
-            });
-            const colorfulStarGeometry = new THREE.SphereGeometry(Math.random() * 2 + 1, 16, 16);
-            const colorfulStar = new THREE.Mesh(colorfulStarGeometry, colorfulStarMaterial);
-            colorfulStar.position.set(
-                (Math.random() - 0.5) * 2000,
-                (Math.random() - 0.5) * 2000,
-                (Math.random() - 0.5) * 2000
-            );
-            scene.add(colorfulStar);
-            stars.push(colorfulStar);
-        }
-
-        // Bloom effect
-        const renderScene = new THREE.RenderPass(scene, camera);
-        const bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-        bloomPass.threshold = 0;
-        bloomPass.strength = 1.5;
-        bloomPass.radius = 0;
-
-        composer = new THREE.EffectComposer(renderer);
-        composer.addPass(renderScene);
-        composer.addPass(bloomPass);
-
-        animate();
-    });
-
-    function animate() {
-        requestAnimationFrame(animate);
-
-        stars.forEach(star => {
-            star.rotation.x += 0.001;
-            star.rotation.y += 0.001;
-        });
-
-        scene.rotation.x += 0.0001;
-        scene.rotation.y += 0.0001;
-
-        composer.render();
-    }
-
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        composer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // Mouse scroll event listener
-    window.addEventListener('wheel', (event) => {
-        scrollY += event.deltaY * 0.01;
-        camera.position.y = scrollY;
-    });
-
-    // Toggle canvas visibility with fade effect
-    window.addEventListener('keydown', (event) => {
-        if (event.key === 's' || event.key === 'S') {
-            const canvas = document.getElementById('spaceBackground');
-            if (canvasVisible) {
-                canvas.style.transition = 'opacity 1s ease-in-out';
-                canvas.style.opacity = '0';
-                setTimeout(() => {
-                    canvas.style.display = 'none';
-                    canvasVisible = false;
-                }, 1000);
-            } else {
-                canvas.style.display = 'block';
-                setTimeout(() => {
-                    canvas.style.transition = 'opacity 1s ease-in-out';
-                    canvas.style.opacity = '1';
-                }, 10); // Small delay to ensure display change is applied before transition
-                canvasVisible = true;
-            }
-        }
-    });
-</script>
-
-
     <section class="video-section">
         <video autoplay loop muted>
             <source src="images/314844502744625152.mp4" type="video/mp4">
@@ -304,94 +202,27 @@
         </div>
     </section>
 
-    <!-- Section texte et image -->
-    <section class="content-section">
-        <div class="text-content">
-            <h2>INFINITE SKIES</h2>
-            <p>Infinite Skies is an immersive space exploration game blending stunning visuals, VR/AR technology, and emotional storytelling. Players navigate galaxies, solve mysteries, and forge connections, reflecting on humanity's place in the cosmos.</p>
-        </div>
-        <img class="animate-on-scroll" src="images/IntotheInfiniteSkies.png" alt="Into the Infinite Skies">
-    </section>
-
-    <!-- Section vidéo Go Further -->
-    <section class="video-content">
-        <video autoplay loop muted>
-            <source src="images/IntotheInfiniteSkies.mp4" type="video/mp4">
-        </video>
-        <div class="text-overlay">
-            <h1>GO FURTHER</h1>
-            <p>Where Your Journey to the Stars Begins.</p>
-        </div>
-    </section>
-
-    <!-- Section image Go Further -->
-    <section class="image-content">
-        <img class="animate-on-scroll" src="images/5e676132d684b9.75355458.png" alt="Go Further Image">
-        <div class="text-content">
-            <h1>GO FURTHER</h1>
-            <p>Infinite Skies is a cutting-edge immersive experience that blends VR, AR, and 4DX effects to simulate space exploration. From liftoff to interstellar missions, participants engage in interactive adventures that educate and inspire, making the dream of space travel accessible and unforgettable.</p>
-        </div>
-    </section>
-
-  
-  <!-- New product section with image and text -->
     <section class="product-section">
-        <img src="images/adrian-regeci-gGz0zxpIBNI-unsplash.jpg"
+        <img src="images/adrian-regeci-gGz0zxpIBNI-unsplash.jpg" alt="Product Image">
         <div class="text-overlay">
             <h1>PRODUCT</h1>
             <p>Gear Up for the Future, Wear the Power</p>
         </div>
     </section>
-    
-<section>
-  <h1>SHOP</h1>
 
-  <!-- Gallery of images -->
-  <div class="rocket-gallery">
-    <img src="images/unnamed-2-1.jpg" alt="Rocket Image 1">
-    <img src="images/bb.jpg" alt="Rocket Image 2">
-    <img src="images/LD0005309557.jpg" alt="Rocket Image 3">
-  </div>
-</section>
+    <section>
+        <h1>SHOP</h1>
+        <div class="rocket-gallery">
+            <img src="images/unnamed-2-1.jpg" alt="Rocket Image 1">
+            <img src="images/bb.jpg" alt="Rocket Image 2">
+            <img src="images/LD0005309557.jpg" alt="Rocket Image 3">
+        </div>
+    </section>
 
+    <footer id="contact" class="footer">
+        <h2>Contact Us</h2>
+        <p>Email: contact@infiniteskies.com</p>
+    </footer>
 
-
-
-  <section>
-
-  <footer id="contact" class="footer">
-    <h2>Contact Us</h2>
-    <p>Email: contact@infiniteskies.com</p>
-  </footer>
-
-
-  </section>
-
-
-
-    <!-- Script pour les animations au scroll -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: "0px",
-                threshold: 0.05 // Déclenche à 5% de visibilité
-            };
-
-            const observerCallback = (entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("animate");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            };
-
-            const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-            const imagesToAnimate = document.querySelectorAll(".animate-on-scroll");
-            imagesToAnimate.forEach(image => observer.observe(image));
-        });
-    </script>
 </body>
 </html>
