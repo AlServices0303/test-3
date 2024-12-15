@@ -121,6 +121,32 @@
             height: 100%;
             z-index: -1;
         }
+.rocket-gallery {
+    display: flex;
+    justify-content: center; /* Centre les images horizontalement */
+    gap: 20px; /* Espace entre les images */
+    padding: 20px; /* Optionnel : espace autour de la galerie */
+}
+
+.rocket-gallery img {
+    width: 30%; /* Chaque image prend 30% de la largeur du conteneur */
+    height: auto; /* Garde le ratio d'aspect des images */
+    object-fit: cover; /* Ajuste l'image pour bien remplir son conteneur sans distorsion */
+    border-radius: 8px; /* Optionnel : arrondit légèrement les coins des images */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Optionnel : ajoute une ombre pour un effet visuel */
+    transition: transform 0.3s; /* Ajoute une animation au survol */
+}
+
+.rocket-gallery img:hover {
+    transform: scale(1.05); /* Agrandit légèrement l'image au survol */
+}
+
+
+        footer { 
+            text-align: center; 
+            padding: 20px; 
+            background-color: #111; 
+        }
     </style>
 </head>
 <body>
@@ -270,7 +296,7 @@
 
     <section class="video-section">
         <video autoplay loop muted>
-            <source src="images/314844502744625152 (1).mp4" type="video/mp4">
+            <source src="images/314844502744625152.mp4" type="video/mp4">
         </video>
         <div class="text-overlay">
             <h1>INFINITE SKIES</h1>
@@ -284,7 +310,7 @@
             <h2>INFINITE SKIES</h2>
             <p>Infinite Skies is an immersive space exploration game blending stunning visuals, VR/AR technology, and emotional storytelling. Players navigate galaxies, solve mysteries, and forge connections, reflecting on humanity's place in the cosmos.</p>
         </div>
-        <img class="animate-on-scroll" src="images/Into the Infinite Skies (1).png" alt="Into the Infinite Skies">
+        <img class="animate-on-scroll" src="images/IntotheInfiniteSkies.png" alt="Into the Infinite Skies">
     </section>
 
     <!-- Section vidéo Go Further -->
@@ -300,12 +326,41 @@
 
     <!-- Section image Go Further -->
     <section class="image-content">
-        <img class="animate-on-scroll" src="images/5e676132d684b9.75355458 (1).png" alt="Go Further Image">
+        <img class="animate-on-scroll" src="images/5e676132d684b9.75355458.png" alt="Go Further Image">
         <div class="text-content">
             <h1>GO FURTHER</h1>
             <p>Infinite Skies is a cutting-edge immersive experience that blends VR, AR, and 4DX effects to simulate space exploration. From liftoff to interstellar missions, participants engage in interactive adventures that educate and inspire, making the dream of space travel accessible and unforgettable.</p>
         </div>
     </section>
+
+  
+
+<section>
+  <!-- Centered SHOP text -->
+  <p class="description">SHOP</p>
+
+  <!-- Gallery of images -->
+  <div class="rocket-gallery">
+    <img src="images/unnamed-2-1.jpg" alt="Rocket Image 1">
+    <img src="images/bb.jpg" alt="Rocket Image 2">
+    <img src="images/LD0005309557.jpg" alt="Rocket Image 3">
+  </div>
+</section>
+
+
+
+
+  <section>
+
+  <footer id="contact" class="footer">
+    <h2>Contact Us</h2>
+    <p>Email: contact@infiniteskies.com</p>
+  </footer>
+
+
+  </section>
+
+
 
     <!-- Script pour les animations au scroll -->
     <script>
@@ -330,36 +385,6 @@
             const imagesToAnimate = document.querySelectorAll(".animate-on-scroll");
             imagesToAnimate.forEach(image => observer.observe(image));
         });
-   </div>
-    <script>
-
-</section>
-  <!-- Centered SHOP text -->
-  <p class="description">SHOP</p>
-
-  <!-- Gallery of images -->
-  <div class="rocket-gallery">
-    <img src="images/unnamed (2) (1).jpg" alt="Rocket Image 1">
-    <img src="images/bb.jpg" alt="Rocket Image 2">
-    <img src="images/LD0005309557_2 (1) (1).jpg" alt="Rocket Image 3">
-  </div>
-</section>
-
-
-
-
-  </section>
-
-  <footer id="contact" class="footer">
-    <h2>Contact Us</h2>
-    <p>Email: contact@infiniteskies.com</p>
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('SpaceX Inspired Website Loaded');
-    });
-  </script>
-  </section>
+    </script>
 </body>
 </html>
